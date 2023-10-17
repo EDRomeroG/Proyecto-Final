@@ -1,9 +1,7 @@
 package co.edu.uniquindio.proyectoFinalFerreteria;
 
-import co.edu.uniquindio.proyectoFinalFerreteria.model.Cliente;
-import co.edu.uniquindio.proyectoFinalFerreteria.model.Empleado;
-import co.edu.uniquindio.proyectoFinalFerreteria.model.Ferreteria;
-import co.edu.uniquindio.proyectoFinalFerreteria.model.Producto;
+import co.edu.uniquindio.proyectoFinalFerreteria.model.*;
+
 import static co.edu.uniquindio.proyectoFinalFerreteria.util.CapturaDatosUtil.*;
 import javax.swing.*;
 import java.util.List;
@@ -147,6 +145,7 @@ public class MainMenu
                         int edad =Integer.parseInt( JOptionPane.showInputDialog
                                 ("Ingresa la edad del Cliente: "));
 
+
                         if(ferreteria.verificarClienteExiste(cedula) == true)
                         {
                             crearCliente(nombre, apellido, cedula,edad, ferreteria);
@@ -248,9 +247,6 @@ public class MainMenu
                         }
                         int edad =Integer.parseInt( JOptionPane.showInputDialog
                                 ("Ingresa la edad del Empleado: "));
-
-
-
                         if(ferreteria.verificarEmpleadoExiste(cedula) == true)
                         {
                             crearEmpleado(nombre, apellido, cedula,edad, ferreteria);

@@ -24,7 +24,11 @@ public class CapturaDatosUtil
     }
 
 
-
+    /**
+     * Metodo para mostrar una Alerta de cierre
+     * @param mensaje
+     * @return
+     */
     public static int mostrarMensajeAlerta(String mensaje)
     {
         return JOptionPane.showConfirmDialog(
@@ -35,7 +39,7 @@ public class CapturaDatosUtil
     }
 
 
-    public static String crearId(String cedula)
+    public static String crearId(String id)
     {
         String codigo="";
         return codigo;
