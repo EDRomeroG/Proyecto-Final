@@ -163,14 +163,24 @@ public class Ferreteria
         empleado.setApellido(apellido);
         empleado.setCedula(cedula);
         empleado.setEdad(edad);
+
         getListaEmpleados().add(empleado);
         return true;
     }
 
+    /**
+     * Metodo para mostrar los empleados
+     * @return
+     */
     public List<Empleado> obtenerEmpleado()
     {
         return getListaEmpleados();
     }
+
+    /**
+     * Metodo para actualizar un empleado
+     * @param cedula
+     */
     public void actualizarEmpleado(String cedula)
     {
         for (int i = 0; i < getListaEmpleados().size(); i++)
@@ -218,6 +228,11 @@ public class Ferreteria
         }
 
     }
+
+    /**
+     * Metodo para eliminar un Empleado
+     * @param cedula
+     */
     public void eliminarEmpleado(String cedula)
     {
         int totalLista= getListaEmpleados().size();
@@ -318,6 +333,59 @@ public class Ferreteria
             }
         }
 
+    }
+
+    /**
+     * Metodo para verificar si un cliente esta o no registrado
+     * @param cedula
+     * @return
+     */
+    public boolean verificarClienteExiste(String cedula)
+    {
+        for(int i=0; i<getListaClientes().size(); i++)
+        {
+            Cliente cliente= getListaClientes().get(i);
+            if(cliente.getCedula().equalsIgnoreCase(cedula))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    /**
+     * Metodo para verificar si un empleado esta o no registrado
+     * @param cedula
+     * @return
+     */
+    public boolean verificarEmpleadoExiste(String cedula)
+    {
+        for(int i=0; i<getListaEmpleados().size(); i++)
+        {
+            Empleado empleado= getListaEmpleados().get(i);
+            if(empleado.getCedula().equalsIgnoreCase(cedula))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Metodo para verificar si un Producto esta o no registrado
+     * @param codigo
+     * @return
+     */
+    public boolean verificarProductoExiste(String codigo)
+    {
+        for(int i=0; i<getListaProducto().size(); i++)
+        {
+            Producto producto= getListaProducto().get(i);
+            if(producto.getCedula().equalsIgnoreCase(codigo))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

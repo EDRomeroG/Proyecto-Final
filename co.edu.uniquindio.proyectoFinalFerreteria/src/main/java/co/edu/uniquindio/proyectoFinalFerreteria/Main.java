@@ -1,6 +1,9 @@
 package co.edu.uniquindio.proyectoFinalFerreteria;
+
 import co.edu.uniquindio.proyectoFinalFerreteria.model.Ferreteria;
-import co.edu.uniquindio.proyectoFinalFerreteria.util.CapturaDatosUtil;
+import jdk.jshell.execution.Util;
+
+import static co.edu.uniquindio.proyectoFinalFerreteria.MainMenu.*;
 
 public class Main
 {
@@ -10,7 +13,8 @@ public class Main
      */
     public static void main(String[] args)
     {
-        Ferreteria ferreteria=
+        Ferreteria ferreteria=inicializarDatosPrueba();
+        MainMenu.mostrarMenuPrincipal(ferreteria);
 
     }
 }

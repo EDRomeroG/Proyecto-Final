@@ -1,10 +1,9 @@
 package co.edu.uniquindio.proyectoFinalFerreteria.model;
 
+import java.awt.*;
+
 public class Cliente extends Persona
 {
-
-
-
 
     public Cliente(String nombre, String apellido, String cedula, int edad)
     {
@@ -20,8 +19,10 @@ public class Cliente extends Persona
     @Override
     public String toString()
     {
-        return "Cliente{" +
-                "ownedByFerreteria=" + ownedByFerreteria +
-                '}';
+        return "Cliente: " +"\n"+
+                "Nombre: " + getNombre() +"\n"+
+                "Apellido: " + getApellido() +"\n"+
+                "Cedula: " + getCedula() +"\n"+
+                "Edad: " + getEdad() ;
     }
 }

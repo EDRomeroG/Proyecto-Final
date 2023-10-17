@@ -35,5 +35,13 @@ public class CapturaDatosUtil
     }
 
 
+    public static String crearId(String cedula)
+    {
+        String codigo="";
+        return codigo;
+
+    }
+
+
 
 }

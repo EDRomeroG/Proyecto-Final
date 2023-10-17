@@ -15,5 +15,15 @@ public class Empleado extends Persona
         super(nombre, apellido, cedula, edad);
     }
 
+    public String toString()
+    {
+        return "Cliente: " +"\n"+
+                "Nombre: " + getNombre() +"\n"+
+                "Apellido: " + getApellido() +"\n"+
+                "Codigo  de empleado: " + id_Empleado +"\n"+
+                "Edad: " + getEdad() ;
+    }
+
+
 
 }

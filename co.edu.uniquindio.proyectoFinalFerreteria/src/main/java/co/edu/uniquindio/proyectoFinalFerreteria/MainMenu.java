@@ -11,6 +11,28 @@ import java.util.List;
 
 public class MainMenu
 {
+    public static Ferreteria  inicializarDatosPrueba()
+    {
+        Ferreteria ferreteria = new Ferreteria();
+
+        ferreteria.setNombre("Prestamos UniQuindio");
+
+        Cliente cliente = new Cliente();
+        cliente.setNombre("Juan");
+        cliente.setApellido("Arias");
+        cliente.setCedula("1094");
+        cliente.setEdad(25);
+        ferreteria.getListaClientes().add(cliente);
+
+        cliente = new Cliente();
+        cliente.setNombre("Ana");
+        cliente.setApellido("Perez");
+        cliente.setCedula("1095");
+        cliente.setEdad(28);
+        ferreteria.getListaClientes().add(cliente);
+
+        return ferreteria;
+    }
 
     /**
      * Metodo para Iniciar la interaccion con el usuario (menu Principal)
@@ -30,6 +52,11 @@ public class MainMenu
                             "4. Hacer Venta" + "\n" +
                             "5. Salir" + "\n" +
                             "Seleccione una Opcion");
+            if (entrada == null)
+            {
+                // El usuario seleccionó "Cancelar" en el cuadro de diálogo
+                continue; // Volver a mostrar el menú principal
+            }
             if (verificarOpcion(entrada))
             {
                 opcion = Integer.parseInt(entrada);
@@ -84,6 +111,10 @@ public class MainMenu
                             "5. Menu Anterior" + "\n" +
                             "6. Salir" + "\n" +
                             "Seleccione una Opcion");
+            if (entrada == null)
+            {
+                continue; // Volver a mostrar el menú principal
+            }
             if (verificarOpcion(entrada))
             {
                 opcion = Integer.parseInt(entrada);
@@ -94,16 +125,39 @@ public class MainMenu
                         //Create
                         String nombre = JOptionPane.showInputDialog
                                 ("Ingresa el nombre del Cliente: ");
+                        if (nombre == null)
+                        {
+                            continue; // Volver a mostrar el menú principal
+                        }
+
                         String apellido = JOptionPane.showInputDialog
                                 ("Ingresa el apellido del Cliente: ");
+                        if (nombre == null)
+                        {
+                            continue; // Volver a mostrar el menú principal
+                        }
+
                         String cedula = JOptionPane.showInputDialog
                                 ("Ingresa la cedula del Cliente: ");
+                        if (nombre == null)
+                        {
+                            continue; // Volver a mostrar el menú principal
+                        }
+
                         int edad =Integer.parseInt( JOptionPane.showInputDialog
                                 ("Ingresa la edad del Cliente: "));
-                        crearCliente(nombre, apellido, cedula,edad, ferreteria);
 
-                        JOptionPane.showMessageDialog
-                                (null, "Cliente ingresado correctamente.");
+                        if(ferreteria.verificarClienteExiste(cedula) == true)
+                        {
+                            crearCliente(nombre, apellido, cedula,edad, ferreteria);
+                            JOptionPane.showMessageDialog
+                                    (null, "Cliente ingresado correctamente.");
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog
+                                    (null, "El Cliente ya esta registrado con ese numero de cedula.");
+                        }
                         break;
                     case 2:
                         //Read
@@ -163,6 +217,10 @@ public class MainMenu
                             "5. Menu Anterior" + "\n" +
                             "6. Salir" + "\n" +
                             "Seleccione una Opcion");
+            if (entrada == null)
+            {
+                continue; // Volver a mostrar el menú principal
+            }
             if(verificarOpcion(entrada))
             {
                 opcion = Integer.parseInt(entrada);
@@ -172,21 +230,43 @@ public class MainMenu
                         //Create Empleado
                         String nombre = JOptionPane.showInputDialog
                                 ("Ingresa el nombre del Empleado ");
+                        if (nombre == null)
+                        {
+                            continue; // Volver a mostrar el menú principal
+                        }
                         String apellido = JOptionPane.showInputDialog
                                 ("Ingresa el apellido del Empleado: ");
+                        if (nombre == null)
+                        {
+                            continue; // Volver a mostrar el menú principal
+                        }
                         String cedula = JOptionPane.showInputDialog
                                 ("Ingresa la cedula del Empleado: ");
+                        if (nombre == null)
+                        {
+                            continue; // Volver a mostrar el menú principal
+                        }
                         int edad =Integer.parseInt( JOptionPane.showInputDialog
                                 ("Ingresa la edad del Empleado: "));
-                        crearEmpleado(nombre, apellido, cedula,edad, ferreteria);
 
-                        JOptionPane.showMessageDialog
-                                (null, "Empleado ingresado correctamente.");
+
+
+                        if(ferreteria.verificarEmpleadoExiste(cedula) == true)
+                        {
+                            crearEmpleado(nombre, apellido, cedula,edad, ferreteria);
+                            JOptionPane.showMessageDialog
+                                    (null, "Empleado ingresado correctamente.");
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog
+                                    (null, "El Empleado ya esta registrado con ese numero de cedula.");
+                        }
                         break;
                     case 2:
                         //Read Empleado
                         JOptionPane.showMessageDialog
-                                (null, "Objetos registrados:");
+                                (null, "Empleados registrados:");
                         mostrarInformacionEmpleados(ferreteria);
                         break;
                     case 3:
@@ -237,14 +317,18 @@ public class MainMenu
         while (opcion!= 6)
         {
             String entrada = JOptionPane.showInputDialog
-                    ("**** Menu Objetos ****" + "\n" +
-                            "1. Crear Objeto" + "\n" +
-                            "2. Mostrar Objeto" + "\n" +
-                            "3. Actualizar datos " + "\n" +
-                            "4. Eliminar" + "\n" +
+                    ("**** Menu Productos ****" + "\n" +
+                            "1. Crear Producto" + "\n" +
+                            "2. Mostrar Producto" + "\n" +
+                            "3. Actualizar Producto " + "\n" +
+                            "4. Eliminar Producto" + "\n" +
                             "5. Menu Anterior" + "\n" +
                             "6. Salir" + "\n" +
                             "Seleccione una Opcion");
+            if (entrada == null)
+            {
+                continue; // Volver a mostrar el menú principal
+            }
 
             if (verificarOpcion(entrada))
             {
@@ -254,14 +338,32 @@ public class MainMenu
 
                     case 1:
                         //Create Objeto
-                        String objeto = JOptionPane.showInputDialog
-                                ("Ingresa el nombre del objeto: ");
+                        String nombre = JOptionPane.showInputDialog
+                                ("Ingresa el nombre del Producto: ");
+                        if (nombre == null)
+                        {
+                            continue; // Volver a mostrar el menú principal
+                        }
                         String codigo = JOptionPane.showInputDialog
-                                ("Ingresa el codigo del objeto: ");
-                        crearObjeto(objeto, codigo, ferreteria);
+                                ("Ingresa el codigo del Producto: ");
+                        if (codigo == null)
+                        {
+                            continue; // Volver a mostrar el menú principal
+                        }
 
-                        JOptionPane.showMessageDialog
-                                (null, "Objeto ingresado correctamente.");
+
+                        if(ferreteria.verificarProductoExiste(codigo) == true)
+                        {
+                            crearObjeto(nombre, codigo, ferreteria);
+                            JOptionPane.showMessageDialog
+                                    (null, "Producto ingresado correctamente.");
+
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog
+                                    (null, "El Cliente ya esta registrado con ese numero de cedula.");
+                        }
                         break;
                     case 2:
                         //Read Objeto
