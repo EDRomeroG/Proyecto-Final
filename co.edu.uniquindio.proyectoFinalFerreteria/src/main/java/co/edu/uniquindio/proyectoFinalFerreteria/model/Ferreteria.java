@@ -1,56 +1,41 @@
 package co.edu.uniquindio.proyectoFinalFerreteria.model;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import static co.edu.uniquindio.proyectoFinalFerreteria.constantes.FerreteriaConstantes.*;
 
 public class Ferreteria
 {
     private String nombre;
-
     List<Cliente> listaClientes = new ArrayList<>();
     List<Empleado>listaEmpleados=new ArrayList<>();
     List<Producto>listaProducto = new ArrayList<>();
     List<Venta>listaVentas = new ArrayList<>();
-
-
-    public Ferreteria()
-    {
-
-    }
-
+    public Ferreteria() {}
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public List<Cliente> getListaClientes() {
         return listaClientes;
     }
-
     public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
-
     public List<Empleado> getListaEmpleados() {
         return listaEmpleados;
     }
-
     public void setListaEmpleados(List<Empleado> listaEmpleados) {
         this.listaEmpleados = listaEmpleados;
     }
-
     public List<Producto> getListaProducto() {
         return listaProducto;
     }
-
     public void setListaProducto(List<Producto> listaProducto) {
         this.listaProducto = listaProducto;
     }
-
     /**
      * Metodo para crear un Cliente
      * @param nombre
@@ -59,20 +44,17 @@ public class Ferreteria
      * @param edad
      * @return boolean
      */
-    public boolean crearCliente(String nombre, String apellido, String cedula, int edad)
+    public boolean crearCliente(String nombre, String apellido, String cedula, int edad,int tipoCliente)
     {
         Cliente cliente = new Cliente();
         cliente.setNombre(nombre);
         cliente.setApellido(apellido);
         cliente.setCedula(cedula);
         cliente.setEdad(edad);
-
+        cliente.asignarTipoCliente(tipoCliente);
         getListaClientes().add(cliente);
-
         return true;
-
     }
-
     /**
      * Metodo para obtener la lista de clientes
      * @return lista
@@ -81,8 +63,6 @@ public class Ferreteria
     {
         return  getListaClientes();
     }
-
-
     /**
      * Metodo para actualizar la edad de un cliente
      * @param cedula
@@ -92,7 +72,6 @@ public class Ferreteria
         for (int i = 0; i < getListaClientes().size(); i++)
         {
             Cliente cliente = getListaClientes().get(i);
-
             if (cliente.getCedula().equalsIgnoreCase(cedula))
             {
                 String opcion = JOptionPane.showInputDialog(
@@ -101,7 +80,6 @@ public class Ferreteria
                                 "2. Cedula\n" +
                                 "3. Salir\n" +
                                 "Seleccione una opcion:");
-
                 switch (opcion)
                 {
                     case "1":
@@ -118,14 +96,19 @@ public class Ferreteria
                         return;
                     default:
                         JOptionPane.showMessageDialog
-                                (null, "Opción no válida");
+                                (null, OPCION_NO_VALIDA);
                         break;
                 }
             }
+            else
+            {
+             JOptionPane.showMessageDialog(null,
+                     "La cedula: "
+                     +cedula+"\n"+" no se encontro");
+             break;
+            }
         }
     }
-
-
     /**
      * Metodo para eliminar un cliente de la lista
      * @param cedula
@@ -143,8 +126,6 @@ public class Ferreteria
             }
         }
     }
-
-
     /**
      * Metodo para crear  un empleado
      * @param nombre
@@ -163,11 +144,9 @@ public class Ferreteria
         empleado.setApellido(apellido);
         empleado.setCedula(cedula);
         empleado.setEdad(edad);
-
         getListaEmpleados().add(empleado);
         return true;
     }
-
     /**
      * Metodo para mostrar los empleados
      * @return
@@ -176,7 +155,6 @@ public class Ferreteria
     {
         return getListaEmpleados();
     }
-
     /**
      * Metodo para actualizar un empleado
      * @param cedula
@@ -186,7 +164,6 @@ public class Ferreteria
         for (int i = 0; i < getListaEmpleados().size(); i++)
         {
             Empleado empleado = getListaEmpleados().get(i);
-
             if (empleado.getCedula().equalsIgnoreCase(cedula))
             {
                 String opcion = JOptionPane.showInputDialog(
@@ -197,7 +174,6 @@ public class Ferreteria
                                 "4. edad\n" +
                                 "5. Salir\n" +
                                 "Seleccione una opcion:");
-
                 switch (opcion)
                 {
                     case "1":
@@ -221,14 +197,12 @@ public class Ferreteria
                                 (null, "Saliendo del programa.");
                         System.exit(0);
                     default:
-                        JOptionPane.showMessageDialog(null, "Opción no válida");
+                        JOptionPane.showMessageDialog(null, OPCION_NO_VALIDA);
                         break;
                 }
             }
         }
-
     }
-
     /**
      * Metodo para eliminar un Empleado
      * @param cedula
@@ -246,8 +220,6 @@ public class Ferreteria
             }
         }
     }
-
-
     /**
      * Metodo para crear un objeto
      * @param nombre
@@ -260,11 +232,8 @@ public class Ferreteria
         producto.setNombre(nombre);
         producto.setId_Producto(codigo);
         getListaProducto().add(producto);
-
         return true;
-
     }
-
     /**
      * Metodo para obtener la lista de Objetos
      * @return lista
@@ -273,7 +242,6 @@ public class Ferreteria
     {
         return  getListaProducto();
     }
-
     /**
      * Metodo para Actualizar un Objeto
      * @param codigo opcion
@@ -283,7 +251,6 @@ public class Ferreteria
         for (int i = 0; i < getListaProducto().size(); i++)
         {
             Producto producto = getListaProducto().get(i);
-
             if (producto.getId_Producto().equalsIgnoreCase(codigo))
             {
                 String opcion = JOptionPane.showInputDialog(
@@ -292,7 +259,6 @@ public class Ferreteria
                                 "2. codigo\n" +
                                 "3. Salir\n" +
                                 "Seleccione una opcion:");
-
                 switch (opcion)
                 {
                     case "1":
@@ -308,14 +274,12 @@ public class Ferreteria
                                 (null, "Saliendo del programa.");
                         System.exit(0);
                     default:
-                        JOptionPane.showMessageDialog(null, "Opción no válida");
+                        JOptionPane.showMessageDialog(null, OPCION_NO_VALIDA);
                         break;
                 }
             }
         }
-
     }
-
     /**
      * Metodo para eliminar un objeto
      * @param codObjeto
@@ -332,9 +296,7 @@ public class Ferreteria
                 break;
             }
         }
-
     }
-
     /**
      * Metodo para verificar si un cliente esta o no registrado
      * @param cedula
@@ -369,7 +331,6 @@ public class Ferreteria
         }
         return false;
     }
-
     /**
      * Metodo para verificar si un Producto esta o no registrado
      * @param codigo
@@ -387,5 +348,4 @@ public class Ferreteria
         }
         return false;
     }
-
 }

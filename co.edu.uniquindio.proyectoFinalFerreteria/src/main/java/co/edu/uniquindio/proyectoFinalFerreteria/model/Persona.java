@@ -6,6 +6,7 @@ public class Persona
     private String apellido;
     private String cedula;
     private int edad;
+
     Ferreteria ownedByFerreteria;
 
 
@@ -66,4 +67,9 @@ public class Persona
     public void setOwnedByFerreteria(Ferreteria ownedByFerreteria) {
         this.ownedByFerreteria = ownedByFerreteria;
     }
+
+
+
+
+
 }
